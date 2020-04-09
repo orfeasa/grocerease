@@ -1,0 +1,24 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+
+input[type="number"] {
+  width: 80px;
+  size: auto;
+}
+
+/* ul.items-list{
+    list-style-type: none;
+    padding-left: 1.3em;
+}
+
+ul.items-list li::before{
+    display:          inline-block;
+    width:            1.2em;
+    height:           1.2em;
+    border: 2px solid black;
+    /* background-color: #000000; 
+    border-radius:     50%;
+    margin-right:     8px;
+    content:          ' '    ;
+}  */

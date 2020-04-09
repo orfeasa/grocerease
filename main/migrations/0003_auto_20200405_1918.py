@@ -6,17 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0002_auto_20200405_1912'),
+        ("main", "0002_auto_20200405_1912"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='category',
-            options={'verbose_name_plural': 'categories'},
+            name="category", options={"verbose_name_plural": "categories"},
         ),
         migrations.AlterField(
-            model_name='product',
-            name='estimated_daily_consumption',
-            field=models.DecimalField(blank=True, decimal_places=10, max_digits=10, null=True),
+            model_name="product",
+            name="estimated_daily_consumption",
+            field=models.DecimalField(
+                blank=True, decimal_places=10, max_digits=10, null=True
+            ),
         ),
     ]
