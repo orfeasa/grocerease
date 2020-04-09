@@ -39,10 +39,10 @@ class Order(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=256)
-    category = models.ForeignKey(Category,null=True, on_delete=models.SET_NULL)
+    category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
     UNITS = (("ML", "ml"), ("G", "g"), ("PC", "piece"))
     unit = models.CharField(max_length=2, choices=UNITS)
-    
+
     estimated_daily_consumption = models.DecimalField(
         max_digits=10, decimal_places=10, blank=True, null=True
     )
