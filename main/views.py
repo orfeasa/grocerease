@@ -13,3 +13,7 @@ class PlanView(TemplateView):
 
 class BaseView(TemplateView):
     template_name = "main/base.html"
+
+class OrderView(TemplateView):
+    template_name = "main/orders.html"
+    # order list view

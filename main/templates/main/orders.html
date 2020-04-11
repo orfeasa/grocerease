@@ -1,0 +1,130 @@
+{% extends 'main/base.html' %} {% block content %}
+
+<h1>Order history</h1>
+<div class="container mt-4"></div>
+<div class="accordion" id="accordionExample">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h2 class="mb-0">
+        <button
+          class="btn btn-link"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseOne"
+          aria-expanded="true"
+          aria-controls="collapseOne"
+        >
+          <h4>
+            12 Jul 2021 (5 days ago) <span class="items-count"> 8 items</span>
+          </h4>
+        </button>
+      </h2>
+    </div>
+
+    <div
+      id="collapseOne"
+      class="collapse show"
+      aria-labelledby="headingOne"
+      data-parent="#accordionExample"
+    >
+      <div class="card-body">
+        <div class="card-body">
+            <h4 class="orders-item-category">Household items</h4>
+            <ul>
+              <li>Toilet Paper 8 rolls</li>
+              <li>Sponge for kitchen 3 items</li>
+            </ul>
+            <h4 class="orders-item-category">Milk & Cheese</h4>
+            <ul>
+              <li>Whole Milk 2 liters</li>
+              <li>Feta cheese 500 grams</li>
+            </ul>
+            <p class="text-right"><a href="#" class="href">edit</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h2 class="mb-0">
+        <button
+          class="btn btn-link collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseTwo"
+          aria-expanded="false"
+          aria-controls="collapseTwo"
+        >
+          <h4>
+            8 Jul 2021 (12 days ago) <span class="items-count"> 8 items</span>
+          </h4>
+        </button>
+      </h2>
+    </div>
+    <div
+      id="collapseTwo"
+      class="collapse"
+      aria-labelledby="headingTwo"
+      data-parent="#accordionExample"
+    >
+      <div class="card-body">
+        <h4 class="orders-item-category">Household items</h4>
+        <ul>
+          <li>Toilet Paper 8 rolls</li>
+          <li>Sponge for kitchen 3 items</li>
+        </ul>
+        <h4 class="orders-item-category">Milk & Cheese</h4>
+        <ul>
+          <li>Whole Milk 2 liters</li>
+          <li>Feta cheese 500 grams</li>
+        </ul>
+        <p class="text-right"><a href="#" class="href">edit</a></p>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h2 class="mb-0">
+        <button
+          class="btn btn-link collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#collapseThree"
+          aria-expanded="false"
+          aria-controls="collapseThree"
+        >
+          <h4>
+            1 Jun 2021 (45 days ago) <span class="items-count"> 8 items</span>
+          </h4>
+        </button>
+      </h2>
+    </div>
+    <div
+      id="collapseThree"
+      class="collapse"
+      aria-labelledby="headingThree"
+      data-parent="#accordionExample"
+    >
+      <div class="card-body">
+        <h4 class="orders-item-category">Household items</h4>
+        <ul>
+          <li>Toilet Paper 8 rolls</li>
+          <li>Sponge for kitchen 3 items</li>
+          <li>Milk & Cheese</li>
+          <li>Whole Milk 2 liters</li>
+          <li>Feta cheese 500 grams</li>
+        </ul>
+        <p class="text-right"><a href="#" class="href">edit</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5"></div>
+<hr />
+<div class="text-center">
+  <h1>🛒❓</h1>
+  <h2>You don't have any purchases yet!</h2>
+  <h3>Start with your first one <a href="#">here</a>!</h3>
+</div>
+
+{% endblock content %}
