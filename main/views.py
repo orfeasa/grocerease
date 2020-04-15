@@ -17,3 +17,10 @@ class BaseView(TemplateView):
 class OrderView(TemplateView):
     template_name = "main/orders.html"
     # order list view
+
+class LoginView(TemplateView):
+    template_name = "main/login.html"
+
+
+class RegisterView(TemplateView):
+    template_name = "main/register.html"
