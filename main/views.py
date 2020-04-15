@@ -24,3 +24,6 @@ class LoginView(TemplateView):
 
 class RegisterView(TemplateView):
     template_name = "main/register.html"
+
+class IndexView(TemplateView):
+    template_name = "main/index.html"
