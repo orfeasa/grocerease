@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %} {% load bootstrap4 %} {% block content %}
+
+<h2>Please Login:</h2>
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again!</p>
+{% endif %}
+
+<form method="POST" action="{% url 'login' %}">
+  {% csrf_token %} {% bootstrap_form form %} {% buttons %}
+  <button type="submit" class="btn btn-primary">Login</button>
+  {% endbuttons %}
+</form>
+
+{% endblock content %}

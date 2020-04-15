@@ -23,17 +23,37 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
 
-
     <!-- Favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
-  <link rel="manifest" href="{% static 'favicon/site.webmanifest'%}">
-  <link rel="mask-icon" href="{% static 'favicon/safari-pinned-tab.svg' %}" color="#5bbad5">
-  <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="msapplication-config" content="{% static 'favicon/browserconfig.xml' %}">
-  <meta name="theme-color" content="#ffffff">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{% static 'favicon/apple-touch-icon.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{% static 'favicon/favicon-32x32.png' %}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{% static 'favicon/favicon-16x16.png' %}"
+    />
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest'%}" />
+    <link
+      rel="mask-icon"
+      href="{% static 'favicon/safari-pinned-tab.svg' %}"
+      color="#5bbad5"
+    />
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta
+      name="msapplication-config"
+      content="{% static 'favicon/browserconfig.xml' %}"
+    />
+    <meta name="theme-color" content="#ffffff" />
   </head>
 
   <body>
@@ -48,7 +68,7 @@
           src="{% static 'media/logo-text.png' %}"
           class="logo-text d-inline-block align-middle"
           alt=""
-        />        
+        />
       </a>
       <button
         class="navbar-toggler"
@@ -80,8 +100,8 @@
           <li class="nav-item {% if url_name == 'login' %}active{% endif %}">
             <a href="{% url 'login' %}" class="nav-link">Log in</a>
           </li>
-          <li class="nav-item {% if url_name == 'register' %}active{% endif %}">
-            <a href="{% url 'register' %}" class="nav-link">Register</a>
+          <li class="nav-item {% if url_name == 'signup' %}active{% endif %}">
+            <a href="{% url 'signup' %}" class="nav-link">Signup</a>
           </li>
         </ul>
       </div>
