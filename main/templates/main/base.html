@@ -84,10 +84,10 @@
       {% with url_name=request.resolver_match.url_name %}
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+          {% if user.is_authenticated %}
           <li class="nav-item {% if url_name == 'index' %}active{% endif %}">
             <a class="nav-link" href="{% url 'index' %}">Home</a>
           </li>
-          {% if user.is_authenticated %}
           <li class="nav-item {% if url_name == 'plan' %}active{% endif %}">
             <a class="nav-link" href="{% url 'plan' %}">New Order</a>
           </li>
@@ -96,11 +96,9 @@
           </li>
           {% endif %}
         </ul>
-        {% if user.is_authenticated %}
-        {% endif %}
         <ul class="navbar-nav ml-auto">
-          <span class="navbar-text">Welcome: {{ user.username }}</span>
           {% if user.is_authenticated %}
+          <span class="navbar-text">👤 {{ user.username }}</span>
           <a class="nav-item nav-link" href="{% url 'logout' %}">Log out</a>
           {% else %}
           <li class="nav-item {% if url_name == 'login' %}active{% endif %}">
