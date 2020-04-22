@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.contrib.auth import login, logout
+from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 from main import forms
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (
     TemplateView,
     ListView,
@@ -12,15 +13,12 @@ from django.views.generic import (
 )
 
 
-class PlanView(TemplateView):
+
+class PlanView(LoginRequiredMixin, TemplateView):
     template_name = "main/plan.html"
 
 
-class BaseView(TemplateView):
-    template_name = "main/base.html"
-
-
-class OrderView(TemplateView):
+class OrderView(LoginRequiredMixin, TemplateView):
     template_name = "main/orders.html"
     # order list view
 
