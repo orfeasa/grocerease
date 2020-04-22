@@ -1,17 +1,11 @@
-from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
-from django.urls import reverse_lazy
-from main import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import (
-    TemplateView,
-    ListView,
-    DetailView,
-    CreateView,
-    UpdateView,
-    DeleteView,
-)
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  TemplateView, UpdateView)
 
+from main import forms
 
 
 class PlanView(LoginRequiredMixin, TemplateView):
