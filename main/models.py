@@ -40,11 +40,11 @@ class Order(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=256)
     category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
-    UNITS = (("ML", "ml"), ("G", "g"), ("PC", "piece"))
+    UNITS = (("ML", "ml"), ("G", "gram"), ("PC", "piece"))
     unit = models.CharField(max_length=2, choices=UNITS)
 
     estimated_daily_consumption = models.DecimalField(
-        max_digits=10, decimal_places=10, blank=True, null=True
+        max_digits=20, decimal_places=10, blank=True, null=True
     )
     estimation_certainty = models.DecimalField(
         max_digits=10, decimal_places=10, default=0.01, blank=True
@@ -61,9 +61,14 @@ class Product(models.Model):
 
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(
+        Order, related_name="order_items", on_delete=models.CASCADE
+    )
     product = models.ForeignKey(Product, on_delete=models.PROTECT)
     quantity = models.DecimalField(max_digits=10, decimal_places=2)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.order}, {self.product} ({self.quantity})"
