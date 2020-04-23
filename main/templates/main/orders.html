@@ -1,130 +1,67 @@
-{% extends 'main/base.html' %} {% block content %}
+{% extends 'main/base.html' %} 
 
+{% block content %}
 <h1>Order history</h1>
-<div class="container mt-4"></div>
-<div class="accordion" id="accordionExample">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h2 class="mb-0">
-        <button
-          class="btn btn-link"
-          type="button"
-          data-toggle="collapse"
-          data-target="#collapseOne"
-          aria-expanded="true"
-          aria-controls="collapseOne"
-        >
-          <h4>
-            12 Jul 2021 (5 days ago) <span class="items-count"> 8 items</span>
-          </h4>
-        </button>
-      </h2>
-    </div>
+<div class="container mt-5"></div>
 
-    <div
-      id="collapseOne"
-      class="collapse show"
-      aria-labelledby="headingOne"
-      data-parent="#accordionExample"
-    >
-      <div class="card-body">
+{% if orders %}
+<div class="accordion" id="accordionOrders">
+  {% for order in orders %}
+    <div class="card">
+      <div class="card-header" id="heading{{forloop.counter}}">
+        <h2 class="mb-0">
+          <button
+            class="btn btn-link"
+            type="button"
+            data-toggle="collapse"
+            data-target="#collapse{{ forloop.counter }}"
+            aria-expanded="false"
+            aria-controls="collapse{{ forloop.counter }}"
+          >
+            <h4>
+              {{ order.created_at|date }} ({{ order.created_at|timesince }} ago) <span class="items-count"> 
+              {% with total=order.order_items.all.count %}
+                {{ total }} item{{ total|pluralize }}</span>
+              {% endwith %}
+            </h4>
+          </button>
+        </h2>
+      </div>
+
+      <div
+        id="collapse{{ forloop.counter }}"
+        class="collapse"
+        aria-labelledby="heading{{ forloop.counter }}"
+        data-parent="#accordionOrders"
+      >
         <div class="card-body">
-            <h4 class="orders-item-category">Household items</h4>
-            <ul>
-              <li>Toilet Paper 8 rolls</li>
-              <li>Sponge for kitchen 3 items</li>
-            </ul>
-            <h4 class="orders-item-category">Milk & Cheese</h4>
-            <ul>
-              <li>Whole Milk 2 liters</li>
-              <li>Feta cheese 500 grams</li>
+            <ul>            
+            {% regroup order.order_items.all|dictsort:"product.category.name" by product.category.name as category_list %}
+            {% for category in category_list %}
+              <h4 class="orders-item-category">{{ category.grouper }}</h4>
+              <ul>
+                {% for order_item in category.list %}
+                  <li>{{ order_item.product.name }} {{ order_item.quantity|floatformat:"0" }} {{order_item.product.get_unit_display }}{{order_item.quantity|pluralize}}
+                  
+                  </li>
+                {% endfor %}
+              </ul>                        
+            {% empty %}
+              <h4 class="orders-item-category">This order is empty 🤷</h4>
+            {% endfor %}
             </ul>
             <p class="text-right"><a href="#" class="href">edit</a></p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h2 class="mb-0">
-        <button
-          class="btn btn-link collapsed"
-          type="button"
-          data-toggle="collapse"
-          data-target="#collapseTwo"
-          aria-expanded="false"
-          aria-controls="collapseTwo"
-        >
-          <h4>
-            8 Jul 2021 (12 days ago) <span class="items-count"> 8 items</span>
-          </h4>
-        </button>
-      </h2>
-    </div>
-    <div
-      id="collapseTwo"
-      class="collapse"
-      aria-labelledby="headingTwo"
-      data-parent="#accordionExample"
-    >
-      <div class="card-body">
-        <h4 class="orders-item-category">Household items</h4>
-        <ul>
-          <li>Toilet Paper 8 rolls</li>
-          <li>Sponge for kitchen 3 items</li>
-        </ul>
-        <h4 class="orders-item-category">Milk & Cheese</h4>
-        <ul>
-          <li>Whole Milk 2 liters</li>
-          <li>Feta cheese 500 grams</li>
-        </ul>
-        <p class="text-right"><a href="#" class="href">edit</a></p>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h2 class="mb-0">
-        <button
-          class="btn btn-link collapsed"
-          type="button"
-          data-toggle="collapse"
-          data-target="#collapseThree"
-          aria-expanded="false"
-          aria-controls="collapseThree"
-        >
-          <h4>
-            1 Jun 2021 (45 days ago) <span class="items-count"> 8 items</span>
-          </h4>
-        </button>
-      </h2>
-    </div>
-    <div
-      id="collapseThree"
-      class="collapse"
-      aria-labelledby="headingThree"
-      data-parent="#accordionExample"
-    >
-      <div class="card-body">
-        <h4 class="orders-item-category">Household items</h4>
-        <ul>
-          <li>Toilet Paper 8 rolls</li>
-          <li>Sponge for kitchen 3 items</li>
-          <li>Milk & Cheese</li>
-          <li>Whole Milk 2 liters</li>
-          <li>Feta cheese 500 grams</li>
-        </ul>
-        <p class="text-right"><a href="#" class="href">edit</a></p>
-      </div>
-    </div>
-  </div>
+  {% endfor %}
 </div>
-
-<div class="container mt-5"></div>
-<hr />
-<div class="text-center">
-  <h1>🛒❓</h1>
-  <h2>You don't have any purchases yet!</h2>
-  <h3>Start with your first one <a href="#">here</a>!</h3>
-</div>
+{% else %}
+  <div class="text-center">
+    <h1>🛒❓</h1>
+    <h2>You don't have any purchases yet!</h2>
+    <h3>Start with your first one <a href="#">here</a>!</h3>
+  </div>
+{% endif %}
 
 {% endblock content %}
