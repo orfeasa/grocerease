@@ -1,5 +1,3 @@
-import datetime
-
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
@@ -23,17 +21,11 @@ class PlanView(LoginRequiredMixin, TemplateView):
 
 
 class OrderListView(LoginRequiredMixin, ListView):
-    model = Order
     context_object_name = "orders"
     template_name = "main/orders.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["now"] = datetime.datetime.now()
-        return context
-
     def get_queryset(self):
-        return super().get_queryset()
+        return Order.objects.filter(user=self.request.user)
 
 
 class IndexView(TemplateView):
