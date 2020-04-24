@@ -22,9 +22,10 @@ class PlanView(LoginRequiredMixin, TemplateView):
 
 class OrderListView(LoginRequiredMixin, ListView):
     context_object_name = "orders"
-    template_name = "main/orders.html"
+    template_name = "main/orders_list.html"
 
     def get_queryset(self):
+        # only show orders of that user in descending creation date
         return Order.objects.filter(user=self.request.user).order_by("-created_at")
 
 
