@@ -25,7 +25,7 @@ class OrderListView(LoginRequiredMixin, ListView):
     template_name = "main/orders.html"
 
     def get_queryset(self):
-        return Order.objects.filter(user=self.request.user)
+        return Order.objects.filter(user=self.request.user).order_by("-created_at")
 
 
 class IndexView(TemplateView):
