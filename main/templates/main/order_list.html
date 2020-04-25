@@ -4,9 +4,9 @@
 <h1>Order history</h1>
 <div class="container mt-5"></div>
 
-{% if orders %}
+{% if order_list %}
 <div class="accordion" id="accordionOrders">
-  {% for order in orders %}
+  {% for order in order_list %}
     <div class="card">
       <div class="card-header" id="heading{{forloop.counter}}">
         <h2 class="mb-0">
