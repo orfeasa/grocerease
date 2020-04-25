@@ -14,4 +14,6 @@ urlpatterns = [
     path("signup/", views.SignUp.as_view(), name="signup"),
     path("logout/", LogoutView.as_view(), name="logout", kwargs={"next_page": "/"}),
     path("", views.IndexView.as_view(), name="index"),
+    path("categories/new/", views.CategoryCreateView.as_view(), name="category-create"),
+    path("categories/", views.CategoryListView.as_view(), name="category-list"),
 ]

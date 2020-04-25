@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %} 
+{% load bootstrap4 %} 
+{% block content %}
+<h1>All categories</h1>
+
+<ul>
+{% for category in category_list %}
+    <li>{{ category.name }}</li>
+{% empty %}
+    <li>No categories yet.</li>
+{% endfor %}
+</ul>
+
+<a href="{% url 'category-create' %}">Create new</a>
+
+{% endblock content %}
