@@ -17,7 +17,7 @@ class User(AbstractUser):
 
 
 class Category(models.Model):
-    name = models.CharField("category name", max_length=256)
+    name = models.CharField(verbose_name="category name", max_length=256)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
