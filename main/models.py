@@ -24,6 +24,8 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = "categories"
+        # one user cannot create more than one category with the same name
+        unique_together = ["name", "user"]
 
     def __str__(self):
         return self.name
