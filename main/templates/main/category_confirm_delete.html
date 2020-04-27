@@ -1,0 +1,15 @@
+
+
+{% extends 'main/base.html' %} 
+{% load bootstrap4 %} 
+{% block content %}
+<h1>Delete category</h1>
+<form method="POST">
+  {% csrf_token %} 
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+  {% buttons %}
+  <button type="submit" class="btn btn-danger">Delete</button>
+  {% endbuttons %}
+</form>
+
+{% endblock content %}

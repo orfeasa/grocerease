@@ -2,9 +2,16 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
-                                  TemplateView, UpdateView)
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    TemplateView,
+    UpdateView,
+)
 
+from django import forms as djangoforms
 from main import forms
 from main.models import Category, Order
 
@@ -48,3 +55,15 @@ class CategoryListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         # only show categories of that user in descending name
         return Category.objects.filter(user=self.request.user).order_by("name")
+
+
+class CategoryUpdateView(UpdateView):
+    model = Category
+    fields = ["name"]
+    template_name_suffix = "_update_form"
+
+
+class CategoryDeleteView(LoginRequiredMixin, DeleteView):
+    model = Category
+    template_name_suffix = "_confirm_delete"
+    success_url = reverse_lazy("category-list")
