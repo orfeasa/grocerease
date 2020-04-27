@@ -33,7 +33,7 @@ class SignUp(CreateView):
 
 class CategoryCreateView(LoginRequiredMixin, CreateView):
     model = Category
-    template_name = "main/category_create.html"
+    template_name_suffix = "_create_form"
     fields = ["name"]
 
     def form_valid(self, form):
