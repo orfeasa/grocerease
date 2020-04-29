@@ -1,5 +1,7 @@
 # GrocerEase
 
+![grocerEase logo](https://raw.githubusercontent.com/orfeasa/grocerease/master/main/static/media/full-logo-horizontal.png)
+
 A web application helping consumers plan their shopping, by estimating the quantity of each item in order do avoid going to the super market for a desired time period.
 
 ## Development
