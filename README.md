@@ -23,6 +23,12 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Code linting & formatting
+
+```
+black . && isort -rc && flake8
+```
+
 ## License
 
 This software is licensed under the MIT license.
