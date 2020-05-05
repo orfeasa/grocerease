@@ -41,7 +41,7 @@
               <h4 class="orders-item-category">{{ category.grouper }}</h4>
               <ul>
                 {% for order_item in category.list %}
-                  <li>{{ order_item.product.name }} {{ order_item.quantity|floatformat:"0" }} {{order_item.product.get_unit_display }}{{order_item.quantity|pluralize}}                  
+                  <li>{{ order_item.product.name }} {{ order_item.quantity|floatformat:"0" }} {{order_item.product.get_unit_display }}{{order_item.quantity|pluralize}} <a href="{% url 'orderitem-update' pk=order_item.pk %}">edit</a>
                   </li>
                 {% endfor %}
               </ul>                        

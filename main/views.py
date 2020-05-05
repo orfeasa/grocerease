@@ -1,3 +1,4 @@
+from django import forms as djangoforms
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
@@ -11,9 +12,8 @@ from django.views.generic import (
     UpdateView,
 )
 
-from django import forms as djangoforms
 from main import forms
-from main.models import Category, Order
+from main.models import Category, Order, OrderItem
 
 
 class PlanView(LoginRequiredMixin, TemplateView):
@@ -67,3 +67,8 @@ class CategoryDeleteView(LoginRequiredMixin, DeleteView):
     model = Category
     template_name_suffix = "_confirm_delete"
     success_url = reverse_lazy("category-list")
+
+class OrderItemUpdateView(LoginRequiredMixin, UpdateView):
+    model = OrderItem
+    fields = ["product", "quantity"]
+    template_name_suffix = "_update_form"

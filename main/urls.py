@@ -17,13 +17,19 @@ urlpatterns = [
     path("categories/new/", views.CategoryCreateView.as_view(), name="category-create"),
     path("categories/", views.CategoryListView.as_view(), name="category-list"),
     path(
-        "categories/<int:pk>/edit",
+        "categories/<int:pk>/edit/",
         views.CategoryUpdateView.as_view(),
         name="category-update",
     ),
     path(
-        "categories/<int:pk>/delete",
+        "categories/<int:pk>/delete/",
         views.CategoryDeleteView.as_view(),
         name="category-delete",
+    ),
+    path("orders/<int:pk>/edit/", views.OrderUpdateView.as_view(), name="order-update"),
+    path(
+        "orderitems/<int:pk>/edit",
+        views.OrderItemUpdateView.as_view(),
+        name="orderitem-update",
     ),
 ]
