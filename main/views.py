@@ -57,7 +57,7 @@ class CategoryListView(LoginRequiredMixin, ListView):
         return Category.objects.filter(user=self.request.user).order_by("name")
 
 
-class CategoryUpdateView(UpdateView):
+class CategoryUpdateView(LoginRequiredMixin, UpdateView):
     model = Category
     fields = ["name"]
     template_name_suffix = "_update_form"
